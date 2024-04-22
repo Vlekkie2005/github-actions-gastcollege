@@ -17,6 +17,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+      - run: composer install
       
       - name: Run Laravel Pint
         run: vendor/bin/pint
