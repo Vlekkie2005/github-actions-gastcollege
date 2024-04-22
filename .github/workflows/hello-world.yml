@@ -28,4 +28,4 @@ jobs:
         run: ls -R
             
       - name: Run Playwright Tests
-        run: npx playwright test ./tests/e2e/account.spec.ts
+        run: npx playwright test tests/e2e/account.spec.ts
