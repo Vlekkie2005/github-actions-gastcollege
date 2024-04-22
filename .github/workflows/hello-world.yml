@@ -30,8 +30,19 @@ jobs:
       - name: Install playwright Dependencies
         run: npx playwright install-deps
 
+      - name: Install phpstan
+        run: composer install
+
+      - name: Install phpstan
+        run: composer require --dev phpstan/phpstan
+
       - name: Debug File System
         run: ls -R
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse
             
       - name: Run Playwright Tests
         run: npx playwright test tests/e2e/account.spec.ts
+
+
