@@ -18,7 +18,19 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
-    
 
-      - name: Run Playwright
-        run: npx playwright test
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+            
+      - name: Install Dependencies
+        run: npm install
+
+            
+      - name: Debug File System
+        run: ls -R
+
+            
+      - name: Run Playwright Tests
+        run: npx playwright test tests/e2e/account.spec.ts
