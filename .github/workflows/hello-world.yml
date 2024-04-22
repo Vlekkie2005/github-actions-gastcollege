@@ -18,11 +18,9 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
-      - name: Run PHPStan
-        uses: vendor/bin/phpstan analyse
-        with:
-          path: src/ inc/
       - name: Run Laravel Pint
         run: vendor/bin/pint
       - name: Run Playwright
         run: npx playwright test
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse
