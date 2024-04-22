@@ -23,10 +23,13 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        
-      - name: Install Dependencies
+
+      - name: Install playwright
         run: npx playwright install
-            
+
+      - name: Install playwright Dependencies
+        run: npx playwright install-deps
+
       - name: Debug File System
         run: ls -R
             
