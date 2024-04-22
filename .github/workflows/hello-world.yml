@@ -35,6 +35,9 @@ jobs:
         with:
           php-version: '8.2'
 
+      - name: Start Development Container
+        run: bash .devcontainer/start-container.sh
+
       - name: Install phpstan
         run: composer install
 
@@ -42,12 +45,18 @@ jobs:
         run: composer require --dev phpstan/phpstan
 
       - name: Debug File System
-        run: ls -R
+        run: ls -al && ls -al tests && ls -al tests/e2e
+
+          
+      - name: Start Laravel Server
+        run: php artisan serve --host=0.0.0.0 --port=8000 &
+
+      - run: curl --fail-with-body http://localhost:8000/
+
+      - name: Run Playwright Tests
+        run: npx playwright test tests/e2e/account.spec.ts
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse
-            
-      - name: Run Playwright Tests
-        run: npx playwright test tests/e2e/account.spec.ts
 
 
